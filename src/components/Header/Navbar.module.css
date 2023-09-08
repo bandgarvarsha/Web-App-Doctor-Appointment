@@ -1,0 +1,42 @@
+.nav {
+  margin-left: 3rem;
+
+  color: white;
+  text-decoration: none;
+}
+
+.nav:hover {
+  color: black;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 20px;
+  color: white;
+}
+
+.leftNav {
+  display: flex;
+  align-items: center;
+}
+
+.rightNav {
+  display: flex;
+  align-items: center;
+  margin-left: 56rem;
+}
+
+.profilePhoto {
+  border-radius: 30px;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.noArrow::after {
+  display: none !important; /* Hide the default dropdown arrow */
+}

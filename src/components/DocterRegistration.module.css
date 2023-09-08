@@ -1,0 +1,85 @@
+.main {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+.container {
+  position: relative;
+  /* max-width: 500px; */
+  width: 50%;
+  background: aliceblue;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.container header {
+  font-size: 1.2rem;
+  color: #000;
+  font-weight: 600;
+  text-align: center;
+}
+
+.container .form {
+  margin-top: 15px;
+}
+
+.form .inputBox {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.inputBox label {
+  color: #000;
+}
+
+.form :where(.inputBox input) {
+  position: relative;
+  height: 35px;
+  width: 93%;
+  outline: none;
+  font-size: 1rem;
+  color: #808080;
+  margin-top: 5px;
+  border: 1px solid #4682b4;
+  border-radius: 6px;
+  padding: 0 15px;
+  background: aliceblue;
+}
+
+.inputBox input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form .column1 {
+  display: flex;
+  width: 96%;
+  column-gap: 10px;
+}
+
+.form .column {
+  display: flex;
+  width: 96%;
+  column-gap: 10px;
+}
+.address :where(input) {
+  margin-top: 10px;
+}
+
+.form button {
+  height: 40px;
+  width: 93%;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #4682b4;
+}
+
+.form button:hover {
+  background: #265df2;
+}

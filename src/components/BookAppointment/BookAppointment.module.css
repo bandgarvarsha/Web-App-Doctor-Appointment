@@ -1,0 +1,23 @@
+.bookingbox {
+  margin: 40px;
+  position: absolute;
+
+  margin-left: 35%;
+  width: 350px;
+  height: auto;
+  padding: 20px;
+  border: 1px solid;
+  /* border-radius: 15px; */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 26); */
+}
+
+.button {
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  padding: 8px 16px;
+  background-color: #4070f4;
+  border-radius: 6px;
+  margin-left: 4.5rem;
+  cursor: pointer;
+}

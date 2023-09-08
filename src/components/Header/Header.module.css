@@ -1,0 +1,20 @@
+.header {
+  background-color: #4682b4;
+  display: flex;
+  justify-content: space-between;
+  padding: 1 2rem;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 26); */
+  height: 5rem;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.header img {
+  /* width: 5rem; */
+  height: 4rem;
+  margin-left: 0.5rem;
+}

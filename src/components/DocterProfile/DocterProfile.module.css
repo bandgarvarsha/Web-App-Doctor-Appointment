@@ -1,0 +1,111 @@
+.container .card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.profile-container {
+  /* border: 1px solid red !important; */
+  display: flex !important;
+  flex-direction: row !important;
+  border: none !important;
+}
+
+.cardImg {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 20%;
+  margin-top: 1.5rem;
+}
+
+.profileInfo {
+  margin-left: 2rem;
+  padding: 20px;
+}
+
+.name {
+  color: #414146;
+  font-size: 24px;
+  margin-bottom: 3px;
+}
+
+.address {
+  color: #414146;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.button {
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  padding: 8px 16px;
+
+  background-color: #4682b4;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: #265df2;
+}
+
+.speciality {
+  color: #199fd9;
+}
+
+.slots {
+  border: 1px solid #199fd9;
+  color: #199fd9;
+  padding: 5px;
+  margin: 5px;
+  /* margin-top: 1rem; */
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.slots:hover {
+  visibility: visible;
+  background-color: gainsboro;
+}
+
+.slotContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  /* margin-left: 56px; */
+  flex-direction: row;
+}
+
+.dateContainer {
+  margin-top: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 7.5rem;
+  /* margin-left: 4px; */
+}
+
+.dateContainer:hover {
+  text-decoration: underline;
+  color: #199fd9;
+  text-decoration-thickness: 30%;
+}
+
+.m-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  justify-content: flex-start;
+}
+
+.datePicker {
+  margin: 1rem;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 4px;
+}

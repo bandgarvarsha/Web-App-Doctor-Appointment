@@ -37,7 +37,7 @@ const App = () => {
             element={<DocterRegistration />}
           ></Route>
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </Context.Provider>
     </div>
   );

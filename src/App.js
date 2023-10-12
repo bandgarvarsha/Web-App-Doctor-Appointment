@@ -48,8 +48,6 @@ const App = () => {
             ></Route>
             <Route path="/docterLogin" element={<DocterLogin />}></Route>
           </Routes>
-          
-         
         </DocterContext.Provider>
       </Context.Provider>
     </div>
@@ -57,3 +55,4 @@ const App = () => {
 };
 
 export default App;
+//

@@ -18,6 +18,8 @@ const Register = () => {
   const userId = params.id;
   // console.log(userId);
 
+
+  // update user profile by id 
   const updateUsersProfile = async () => {
     try {
       let updateUser = await updateUserProfile(userId);

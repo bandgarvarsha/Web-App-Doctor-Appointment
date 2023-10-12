@@ -29,7 +29,10 @@ const Navbar = () => {
           <NavLink to="/about" className={classes.nav}>
             About
           </NavLink>
+
+          
         </div>
+
 
         {user ? (
           <span className={classes.rightNav}>

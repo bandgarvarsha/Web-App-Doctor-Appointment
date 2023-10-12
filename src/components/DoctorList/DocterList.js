@@ -13,6 +13,8 @@ const Docters = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
+
+    // fetch all docters list
     const fetchList = async () => {
       try {
         let docterList = await fetchDocterList();
@@ -38,6 +40,8 @@ const Docters = () => {
     arrows: true,
     className: "slick-slider",
   };
+
+  
 
   return (
     <div>

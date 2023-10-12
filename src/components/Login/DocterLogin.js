@@ -1,27 +1,29 @@
 import React, { useContext, useState } from "react";
 import classes from "./Login.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
-import { loginFun } from "../loginService";
-import { Context } from "../Context/Context";
-import sweet from "sweetalert2";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { docterLogin } from "../loginService";
 
-const Login = () => {
-  const { user, setUser } = useContext(Context);
-  
-  let navigate = useNavigate();
-  const [email, setEmail] = useState("");
+import sweet from "sweetalert2";
+import { DocterContext } from "../Context/DocterContext";
+
+const DocterLogin = () => {
+  const { docter, setDocter } = useContext(DocterContext);
+
+  const navigate = useNavigate();
+
+  const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await loginFun(email, password);
+      const response = await docterLogin(emailId, password);
       console.log(response);
       if (response.status === 200) {
         sessionStorage.setItem("jwt", response.data.Token);
-        sessionStorage.setItem("Id", response.data.id);
-        setUser(response.data.fullName);
+        sessionStorage.setItem("DocterId", response.data.id);
+        setDocter(response.data.fullName);
         console.log("herere");
         sweet.fire({
           icon: "success",
@@ -29,7 +31,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 2000,
         });
-        navigate("/");
+        navigate(`/slots/${response.data.id} `);
       }
     } catch (err) {
       sweet.fire({
@@ -52,10 +54,10 @@ const Login = () => {
           <div className="form-group mt-4 ">
             <input
               type="email"
-              value={email}
+              value={emailId}
               placeholder="Enter Email"
               className="form-control "
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmailId(e.target.value)}
             />
           </div>
           <div className="form-group mt-4">
@@ -92,4 +94,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default DocterLogin;

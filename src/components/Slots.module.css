@@ -1,6 +1,50 @@
-.slots {
-  border: 1px solid #4682b4;
-  margin-left: 2rem;
-  margin-bottom: 2px;
-  width: 15%;
+.datePicker {
+  margin: 1rem;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 4px;
 }
+
+.slot {
+  border: 1px solid #199fd9;
+  color: #199fd9;
+  padding: 5px;
+  margin: 7px;
+  /* margin-top: 1rem; */
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.selected {
+  background-color: gainsboro;
+  color: #000;
+}
+
+.saveButton {
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  padding: 8px 16px;
+  background-color: #4682b4;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 40%;
+  margin-top: 1rem;
+}
+
+.spinnerWrapper {
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+

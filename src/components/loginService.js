@@ -7,12 +7,15 @@ export const loginFun = async (email, password) => {
   });
 };
 
-export const fetchDocterList = async () => {
-  return await axios.get("http://localhost:5000/doctorList");
+export const docterLogin = async (emailId, password) => {
+  return await axios.post("http://localhost:5000/docterLogin", {
+    emailId: emailId,
+    password: password,
+  });
 };
 
-export const fetchAvailableSlots = async () => {
-  return await axios.get("http://localhost:5000/timeSlots");
+export const fetchDocterList = async () => {
+  return await axios.get("http://localhost:5000/doctorList");
 };
 
 export const registrationFun = async (
@@ -49,7 +52,9 @@ export const docterRegistrationFun = async (
   address,
   phoneNumber,
   experience,
-  information
+  information,
+  emailId,
+  password
 ) => {
   return await axios.post("http://localhost:5000/docterRegistration", {
     id,
@@ -60,5 +65,18 @@ export const docterRegistrationFun = async (
     phoneNumber,
     experience,
     information,
+    emailId,
+    password,
+  });
+};
+
+export const fetchAllSlots = async (dId,date) => {
+  console.log("Date",date)
+  return await axios.get(`http://localhost:5000/allSlots/${dId}/${date}`);
+};
+
+export const fetchSavedSlots = async (selectedDate,selectedSlots) => {
+  return await axios.post("http://localhost:5000/saveSlots",{
+    selectedDate:selectedDate,selectedSlots:selectedSlots
   });
 };

@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import classes from "../DocterProfile/DocterProfile.module.css";
 import { fetchDocterProfile } from "../loginService";
-import DatePicker from "react-datepicker"; // Import the datepicker
-import "react-datepicker/dist/react-datepicker.css"; // Import datepicker styles
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 
 const DocterProfile = () => {
   const [docter, setDocter] = useState();
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedSlots, setSelectedSlots] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const params = useParams();
   const docterId = params.id;
 
   const fetchProfile = async () => {
     try {
+      // fetch all docters information by docter id
       let fetchDocter = await fetchDocterProfile(docterId);
-      console.log("fetch", fetchDocter.data);
+
       if (fetchDocter.status === 200) {
         setDocter(fetchDocter.data);
+        console.log(fetchDocter.data);
+        console.log(fetchDocter.data.slots);
       }
     } catch (err) {
       console.log("err", err);
@@ -27,21 +34,35 @@ const DocterProfile = () => {
     fetchProfile();
   }, [docterId]);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date); // Update the selected date when the user selects a new date
-  };
+  useEffect(() => {
+    // fetch available slots
+    const fetchAvailableSlots = async () => {
+      try {
+        if (selectedDate) {
+          setIsLoading(true);
 
-  const getSlotsForSelectedDate = () => {
-    if (!docter || !selectedDate) {
-      return [];
-    }
-    const selectedDateStr = selectedDate.toISOString().split("T")[0]; // Convert selectedDate to string format "YYYY-MM-DD"
+          let response = await axios.get(
+            `http://localhost:5000/allSlots/${docterId}/${
+              selectedDate.toISOString().split("T")[0]
+            }`
+          );
+          if (response.status === 200) {
+            setIsLoading(false);
+            setSelectedSlots(response.data.savedSlots);
+          } else {
+            setSelectedSlots([]);
+          }
+        }
+      } catch (err) {
+        setIsLoading(false);
+        console.log("Error", err);
+      }
+    };
+    fetchAvailableSlots();
+  }, [docterId, selectedDate]);
 
-    const selectedDateData = docter.data.find(
-      (slot) => slot.date === selectedDateStr
-    );
-
-    return selectedDateData ? selectedDateData.slots : [];
+  const dateChangeHandler = (date) => {
+    setSelectedDate(date);
   };
 
   return (
@@ -64,56 +85,41 @@ const DocterProfile = () => {
             <div>{docter.experience}</div>
             <div className={classes.address}>{docter.address}</div>
             <div>{docter.information}</div>
+            {/* <div>{docter.date}</div>*/}
+
             <DatePicker
-              selected={selectedDate}
-              onChange={handleDateChange}
-              minDate={new Date()} // Set a minimum date if needed
+              dateFormat={"yyyy-MM-dd"}
+              minDate={new Date()}
               placeholderText="Select the date"
               className={classes.datePicker}
+              selected={selectedDate}
+              onChange={dateChangeHandler}
             />
-            <div className="container ">
-              <div className="row">
-                <div className="col-lg-8">
-                  <div className="row">
-                    <div className={`col-lg-8 ${classes["m-flex"]}`}>
-                      {docter.data &&
-                        docter.data.map((slot) => (
-                          <h5
-                            onClick={() => setSelectedDate(new Date(slot.date))}
-                            className={classes.dateContainer}
-                          >
-                            {/* {slot.date} */}
-                          </h5>
-                        ))}
-                    </div>
-                    <div className={`col-lg-8 ${classes["m-flex"]}`}>
-                      {selectedDate && (
-                        <div>
-                          {getSlotsForSelectedDate().map((slot) => (
-                            <div className={classes.slots}>{slot.start}</div>
-                          ))}
-                        </div>
-                      )}
 
-                      {/* {docter.data &&
-                        docter.data.map((slot) => {
-                          return (
-                            slot.date == selectedDate &&
-                            slot.slots &&
-                            slot.slots.map((item) => (
-                              <div className={classes.slots}>{item.start}</div>
-                            ))
-                          );
-                        })} */}
-                    </div>
+            <div className="container d-flex ">
+              {!isLoading && selectedDate && selectedSlots.length === 0 && (
+                <div className={classes.message}>
+                  No slots are available for this date
+                </div>
+              )}
+              {selectedSlots &&
+                selectedSlots.length > 0 &&
+                selectedSlots.map((slot) => (
+                  <div className={classes.slots} key={slot}>
+                    {slot}
                   </div>
-                </div>
-                <div className="col-lg-4 mt-5">
-                  <button className={`mt-4 ${classes["button"]}`}>
-                    Book Appointment
-                  </button>
-                </div>
+                ))}
+            </div>
+            {isLoading && (
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
+            )}
+
+            <div className="col-lg-4 mt-5">
+              <button className={`mt-4 ${classes["button"]}`}>
+                Book Appointment
+              </button>
             </div>
           </div>
         </div>

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import classes from "./DocterRegistration.module.css";
 import { docterRegistrationFun } from "./loginService";
 import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { DocterContext } from "./Context/DocterContext";
 const DocterRegistration = () => {
   const [fullName, setFullName] = useState("");
   const [education, setEducation] = useState("");
@@ -10,6 +12,9 @@ const DocterRegistration = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [experience, setExperience] = useState("");
   const [information, setInformation] = useState("");
+  const [emailId, setEmailId] = useState("");
+  const [password, setPassword] = useState("");
+  const {docter,setDocter}=useContext(DocterContext)
   const navigate = useNavigate();
 
   const onSubmitHandler = async (e) => {
@@ -24,10 +29,12 @@ const DocterRegistration = () => {
       address,
       phoneNumber,
       experience,
-      information
+      information,
+      emailId,
+      password
     );
 
-    navigate("/");
+    navigate("/docterLogin");
   };
 
   return (

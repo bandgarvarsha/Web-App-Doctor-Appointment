@@ -60,17 +60,14 @@
   border: 1px solid #199fd9;
   color: #199fd9;
   padding: 5px;
-  margin: 5px;
+  margin: 7px;
   /* margin-top: 1rem; */
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   text-align: center;
   box-sizing: border-box;
   cursor: pointer;
-}
-
-.slots:hover {
-  visibility: visible;
-  background-color: gainsboro;
 }
 
 .slotContainer {
@@ -79,21 +76,6 @@
   margin-top: 1rem;
   /* margin-left: 56px; */
   flex-direction: row;
-}
-
-.dateContainer {
-  margin-top: 1rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  width: 7.5rem;
-  /* margin-left: 4px; */
-}
-
-.dateContainer:hover {
-  text-decoration: underline;
-  color: #199fd9;
-  text-decoration-thickness: 30%;
 }
 
 .m-flex {
@@ -109,3 +91,9 @@
   border-radius: 5px;
   padding: 4px;
 }
+
+.message{
+  font-weight: bold;
+  color: green;
+}
+

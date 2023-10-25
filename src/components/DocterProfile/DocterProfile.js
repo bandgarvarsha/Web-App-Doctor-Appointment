@@ -65,6 +65,18 @@ const DocterProfile = () => {
     setSelectedDate(date);
   };
 
+  const handleSlotClick = (slot) => {
+    console.log("Selecet", selectedSlots);
+    // if (selectedSlots.includes(slot)) {
+    //   console.log(selectedSlots.filter((selectedSlot) => selectedSlot !== slot))
+    //   setSelectedSlots(
+    //    selectedSlots.filter((selectedSlot) => selectedSlot !== slot)
+    //   );
+    // }
+    // } else {
+    //   setSelectedSlots([...selectedSlots, slot]);
+    // }
+  };
   return (
     <div>
       {docter && (
@@ -104,8 +116,14 @@ const DocterProfile = () => {
               )}
               {selectedSlots &&
                 selectedSlots.length > 0 &&
-                selectedSlots.map((slot) => (
-                  <div className={classes.slots} key={slot}>
+                selectedSlots.map((slot, item) => (
+                  <div
+                    className={`${classes.slots} ${
+                      selectedSlots.includes(slot) ? classes.selectedSlot : ""
+                    }`}
+                    key={item}
+                    onClick={() => handleSlotClick(slot)}
+                  >
                     {slot}
                   </div>
                 ))}

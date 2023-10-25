@@ -97,3 +97,6 @@
   color: green;
 }
 
+.selectedSlot {
+  background-color: yellow;
+}
